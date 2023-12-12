@@ -55,16 +55,16 @@ node dist/index.js ocmboces
 The script will:
 
 1. Look up the district's SchoolTool instance info in the `districts.json` file.
-2. Import and transform the included SQL queries in the `queries` directory with district's info.
+2. Import and transform the included SQL queries in the `queries` directory with the district's info.
 3. Connect to the district's SchoolTool instance and run the queries:
    1. Insert a stored procedure to log errors
    2. Backup the production database
    3. Restore the training database with the backup from production
    4. Reset the ID server in the training database
    5. Create a temp user in the training database
-4. Update the timestamp on the district's `Web.config` file to trigger an IIS restart.
+4. Update the timestamp on the district's `Web.config` file(s) to trigger an IIS restart.
 5. Login to the district's SchoolTool instance with the temp user and update the ID server.
-6. Update the timestamp on the district's `Web.config` file to trigger an IIS restart.
+6. Again, update the timestamp on the district's `Web.config` file(s) to trigger an IIS restart.
 
 ## FIXME
 
