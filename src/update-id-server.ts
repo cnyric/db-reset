@@ -5,7 +5,7 @@ import { chromium } from 'playwright';
 import { log } from './util.js';
 
 async function updateIdServer(district: RefinedDistrict) {
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({ ignoreHTTPSErrors: true });
   const page = await context.newPage();
 
@@ -19,20 +19,23 @@ async function updateIdServer(district: RefinedDistrict) {
 
   await page.click('input:has-text("Login")');
 
-  await page.waitForURL(`${district.training as string}/`, {
-    waitUntil: 'networkidle'
-  });
-
-  await page.click('#Template1_MenuList1_DataList_Tabs_ctl10_SchoolToolLink_Tab');
-  await page.click('#Template1_MenuList1_DataList_Tabs_ctl10_RepeaterTabSubMenu_ctl01_SchoolToolLink_Menu');
+  const maintenance = page.getByRole('link', { name: 'Maintenance' });
+  await maintenance?.waitFor();
+  await maintenance.click();
+  await page.getByRole('link', { name: 'Application' }).click();
   await page.click('#Template1_Control0_SelectList1_ctl38');
+
+  const connectButton = await page.$('button.connect-button');
+  expect(await connectButton?.innerText()).toBe(' CONNECT');
 
   const idServer = await page.$('#SiteNameTextbox');
   await idServer?.fill(district.database);
-  const connectButton = await page.$('button.connect-button');
+
   await connectButton?.click();
 
-  expect(await connectButton?.innerText()).toBe('CONNECTED');
+  setTimeout(async () => {
+    expect(await connectButton?.innerText()).toBe('CONNECTED');
+  }, 3000);
 }
 
 export default updateIdServer;

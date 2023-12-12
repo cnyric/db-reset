@@ -39,32 +39,34 @@ async function main() {
 
     // create logError SP
     try {
+      log.info('Creating LogError stored procedure...');
       await db(dbParams).raw(logErrorSp);
     } catch (error) {
       log.warn('LogError SP already exists');
     }
 
     // restore db
+    log.info('Restoring database...');
     await db(dbParams).raw(restoreDb);
 
     // create user
     try {
+      log.info('Creating user...');
       await db(dbParams).raw(createUser);
     } catch (error) {
       log.warn('User already exists');
     }
 
     // touch config
+    log.info('Touching config...');
     await touchConfig(district);
 
     // update id server
-    try {
-      await updateIdServer(district);
-    } catch (error) {
-      log.error(error);
-    }
+    log.info('Updating ID Server...');
+    await updateIdServer(district);
 
     // touch config
+    log.info('Touching config...');
     await touchConfig(district);
 
     process.exit(0);

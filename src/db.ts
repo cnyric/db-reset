@@ -4,8 +4,6 @@ import { log } from './util.js';
 
 function db(dbVals: string[]): Knex<any, unknown[]> {
   const [database, host, password] = dbVals;
-  // log.debug(database, host, password);
-
   return knex({
     client: 'mssql',
     connection: {

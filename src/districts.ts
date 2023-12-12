@@ -4,6 +4,8 @@ import Iron from '@hapi/iron';
 import { log } from './util.js';
 
 async function getDistrict(code: string): Promise<RefinedDistrict> {
+  log.info(`Getting district info for \`${code}\`...`);
+
   // look up district
   const districts = JSON.parse(await readFile(`${process.cwd()}/data/districts.json`, 'utf-8')) as Districts;
 
