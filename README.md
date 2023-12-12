@@ -2,6 +2,10 @@
 
 ## Setup
 
+- Ensure all servers are reachable over SMB and SQL from the machine running the script. We use Tailscale to connect to the servers over the internet.
+- Create a SQL service account on each SQL server and store the password in an array to encrypt with `dist/encrypt-pws.js`.
+- Create a share on each district's web servers at `D:\inetpub\wwwroot`, granting the designated Windows user `Full Control`.
+
 ### Install
 
 Requires Node v18.x.
@@ -61,3 +65,7 @@ The script will:
 4. Update the timestamp on the district's `Web.config` file to trigger an IIS restart.
 5. Login to the district's SchoolTool instance with the temp user and update the ID server.
 6. Update the timestamp on the district's `Web.config` file to trigger an IIS restart.
+
+## FIXME
+
+- [ ] Restart IIS on all web servers
