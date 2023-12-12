@@ -1,0 +1,42 @@
+{
+  "name": "db-reset",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc && tsc --watch",
+    "postinstall": "sandworm-audit",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf ./dist && tsc"
+  },
+  "dependencies": {
+    "@hapi/iron": "^7.0.1",
+    "@playwright/test": "^1.40.1",
+    "dotenv": "^16.3.1",
+    "execa": "^8.0.1",
+    "knex": "^3.0.1",
+    "playwright": "^1.40.1",
+    "tedious": "^16.6.1",
+    "tslog": "^4.9.2"
+  },
+  "devDependencies": {
+    "@types/module-alias": "^2.0.4",
+    "@types/node": "^18.18.2",
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "eslint": "^8.55.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "module-alias": "^2.2.3",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.3"
+  },
+  "_moduleAliases": {
+    "@@types": "src/types.d.ts"
+  }
+}
