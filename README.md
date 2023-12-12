@@ -4,7 +4,10 @@
 
 ### Install
 
+Requires Node v18.x.
+
 ```bash
+sudo apt install smbclient
 git clone https://github.com/cnyric/db-reset.git
 cd db-reset
 npm install
