@@ -16,20 +16,16 @@ async function touchConfig(district: RefinedDistrict) {
     password: process.env.WINDOWS_PASSWORD as string
   };
 
+  const base = [config.share, '-U', `${config.domain}/${config.username}%${config.password}`, '-c'];
+
   const resGet = await execa('/usr/bin/smbclient', [
-    config.share,
-    '-U',
-    `${config.domain}/${config.username}%${config.password}`,
-    '-c',
+    ...base,
     `prompt OFF; lcd ${tmpdir()}; get ${district.database}Training\\Web.config ${district.database}Training.config`
   ]);
   // log.debug('resGet', resGet);
 
   const resPut = await execa('/usr/bin/smbclient', [
-    config.share,
-    '-U',
-    `${config.domain}/${config.username}%${config.password}`,
-    '-c',
+    ...base,
     `prompt OFF; lcd ${tmpdir()}; put ${district.database}Training.config ${district.database}Training\\Web.config`
   ]);
   // log.debug('resPut', resPut);
