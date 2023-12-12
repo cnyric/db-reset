@@ -21,6 +21,7 @@ async function main(d?: string) {
         district = await getDistrict(args[0]);
       }
     } else {
+      district = await getDistrict(d as string);
     }
     if (!district) {
       throw new Error('District not found');
