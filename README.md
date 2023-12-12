@@ -47,7 +47,7 @@ node dist/index.js [DISTRICT_SHORT_NAME]
 ### Example
 
 ```bash
-> node dist/index.js ocmboces
+> node dist/index.js scramble
 
 2023-12-12 20:46:50.975 INFO    /dist/districts.js:5    Getting district info for `scramble`...
 2023-12-12 20:46:51.135 INFO    /dist/index.js:38       Creating LogError stored procedure...
