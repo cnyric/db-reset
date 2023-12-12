@@ -65,7 +65,3 @@ The script will:
 4. Update the timestamp on the district's `Web.config` file(s) to trigger an IIS restart (`src/touch-config.ts`).
 5. Login to the district's SchoolTool frontend with the temp user and update the ID server (`src/update-id-server.ts`).
 6. Again, update the timestamp on the district's `Web.config` file(s) to trigger an IIS restart.
-
-## FIXME
-
-- [ ] Restart IIS on all web servers

@@ -7,28 +7,31 @@ import { execa } from 'execa';
 import { log } from './util.js';
 
 async function touchConfig(district: RefinedDistrict) {
-  const share = await dns.lookup(district.web);
+  for (const web of district.web) {
+    log.info(`Touching \`${district.code}\` config on \`${web}\`...`);
+    const share = await dns.lookup(web);
 
-  const config = {
-    share: `//${share.address}/wwwroot`,
-    domain: district.cluster === 0 ? 'CNYRIC' : 'STCNYRIC',
-    username: process.env.WINDOWS_USER as string,
-    password: process.env.WINDOWS_PASSWORD as string
-  };
+    const config = {
+      share: `//${share.address}/wwwroot`,
+      domain: district.cluster === 0 ? 'CNYRIC' : 'STCNYRIC',
+      username: process.env.WINDOWS_USER as string,
+      password: process.env.WINDOWS_PASSWORD as string
+    };
 
-  const base = [config.share, '-U', `${config.domain}/${config.username}%${config.password}`, '-c'];
+    const base = [config.share, '-U', `${config.domain}/${config.username}%${config.password}`, '-c'];
 
-  const resGet = await execa('/usr/bin/smbclient', [
-    ...base,
-    `prompt OFF; lcd ${tmpdir()}; get ${district.database}Training\\Web.config ${district.database}Training.config`
-  ]);
-  // log.debug('resGet', resGet);
+    const resGet = await execa('/usr/bin/smbclient', [
+      ...base,
+      `prompt OFF; lcd ${tmpdir()}; get ${district.database}Training\\Web.config ${district.database}Training.config`
+    ]);
+    // log.debug('resGet', resGet);
 
-  const resPut = await execa('/usr/bin/smbclient', [
-    ...base,
-    `prompt OFF; lcd ${tmpdir()}; put ${district.database}Training.config ${district.database}Training\\Web.config`
-  ]);
-  // log.debug('resPut', resPut);
+    const resPut = await execa('/usr/bin/smbclient', [
+      ...base,
+      `prompt OFF; lcd ${tmpdir()}; put ${district.database}Training.config ${district.database}Training\\Web.config`
+    ]);
+    // log.debug('resPut', resPut);}
+  }
 }
 
 export default touchConfig;

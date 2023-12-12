@@ -37,7 +37,7 @@ export interface RefinedDistrict {
   name: string;
   code: string;
   cluster: number;
-  web: string;
+  web: string[];
   sql: string;
   production: string;
   training?: string;

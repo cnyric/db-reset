@@ -22,7 +22,7 @@ async function getDistrict(code: string): Promise<RefinedDistrict> {
   const cluster = districts.clusters[clusterNum] as Cluster;
 
   // get server info
-  const web = cluster.servers.find(s => s.service === 'Web')?.hostname as string;
+  const web = cluster.servers.filter(s => s.service === 'Web')?.map(s => s.hostname);
   const sql = cluster.servers.find(s => s.service === 'SQL')?.hostname as string;
 
   // get site info

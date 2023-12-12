@@ -70,7 +70,6 @@ async function main(d?: string) {
     }
 
     // touch config
-    log.info('Touching config...');
     await touchConfig(district);
 
     // update id server
@@ -78,7 +77,6 @@ async function main(d?: string) {
     await updateIdServer(district);
 
     // touch config
-    log.info('Touching config...');
     await touchConfig(district);
 
     process.exit(0);
