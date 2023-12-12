@@ -2,7 +2,7 @@
 
 ## Setup
 
-- Ensure all servers are reachable over SMB and SQL from the machine running the script. We use Tailscale to connect to the servers over the internet.
+- Ensure all servers are reachable over SMB and SQL from the machine running the script. We use Tailscale to simply this process.
 - Create a SQL service account on each SQL server and store the password in an array to encrypt with `dist/encrypt-pws.js`.
 - Create a share on each district's web servers at `D:\inetpub\wwwroot`, granting the designated Windows user `Full Control`.
 
@@ -47,7 +47,16 @@ node dist/index.js [DISTRICT_SHORT_NAME]
 ### Example
 
 ```bash
-node dist/index.js ocmboces
+> node dist/index.js ocmboces
+
+2023-12-12 20:46:50.975 INFO    /dist/districts.js:5    Getting district info for `scramble`...
+2023-12-12 20:46:51.135 INFO    /dist/index.js:38       Creating LogError stored procedure...
+2023-12-12 20:46:51.166 WARN    /dist/index.js:42       LogError SP already exists
+2023-12-12 20:46:51.166 INFO    /dist/index.js:44       Restoring database...
+2023-12-12 20:47:46.776 INFO    /dist/index.js:47       Creating user...
+2023-12-12 20:47:46.814 INFO    /dist/touch-config.js:7 Touching `scramble` config on `stwebrptcnyric`...
+2023-12-12 20:47:48.202 INFO    /dist/index.js:54       Updating ID Server...
+2023-12-12 20:48:02.965 INFO    /dist/touch-config.js:7 Touching `scramble` config on `stwebrptcnyric`...
 ```
 
 ## How It Works
