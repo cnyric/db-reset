@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "clusters": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "object",
+          "properties": {
+            "servers": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "hostname": {
+                      "type": "string"
+                    },
+                    "ip": {
+                      "type": "string"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "tailscale_ip": {
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "sites": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "district": {
+                      "type": "string"
+                    },
+                    "production": {
+                      "type": "string"
+                    },
+                    "training": {
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "districts": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "cluster": {
+              "type": "integer"
+            },
+            "code": {
+              "type": "string"
+            },
+            "district": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

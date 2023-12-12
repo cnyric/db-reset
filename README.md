@@ -4,7 +4,7 @@
 
 ### Install
 
-```sh
+```bash
 git clone https://github.com/cnyric/db-reset.git
 cd db-reset
 npm install
@@ -12,7 +12,7 @@ npm install
 
 ### Build
 
-```sh
+```bash
 npm run build
 ```
 
@@ -20,7 +20,7 @@ npm run build
 
 Create a `.env` file in the root of the project with the following variables:
 
-```sh
+```bash
 ENCRYPTION_KEY=[PASSWORD_ENCRYPTION_KEY] # Obtain from a colleague
 PASSWORDS=[ENCRYPTED_SERVER_PASSWORDS] # Obtain from a colleague
 SCHOOLTOOL_USER=[SCHOOLTOOL_USER] # Temp user to create in SchoolTool
@@ -29,17 +29,17 @@ WINDOWS_USER=[WINDOWS_USER] # Windows user with access to `wwwroot`
 WINDOWS_PASSWORD=[WINDOWS_PASSWORD] # Windows user's password
 ```
 
-Obtain a copy of the `districts.json` data file from a colleague and place it in a `data` directory in the root of the project.
+Obtain a copy of the `districts.json` data file from a colleague and place it in a `data` directory in the root of the project. See `src/districts.schema.json` for the expected format.
 
 Then run the following command, where `[DISTRICT_SHORT_NAME]` is the short name of the district's SchoolTool instance:
 
-```sh
+```bash
 node dist/index.js [DISTRICT_SHORT_NAME]
 ```
 
 ### Example
 
-```sh
+```bash
 node dist/index.js ocmboces
 ```
 
