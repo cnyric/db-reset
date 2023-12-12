@@ -56,7 +56,7 @@ The script will:
 
 1. Look up the district's SchoolTool instance info in the `districts.json` file.
 2. Import and transform the included SQL queries in the `queries` directory with the district's info.
-3. Connect to the district's SchoolTool instance and run the queries:
+3. Connect to the district's database instance and run the queries:
    1. Insert a stored procedure to log errors
    2. Backup the production database
    3. Restore the training database with the backup from production
