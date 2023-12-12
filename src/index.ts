@@ -7,15 +7,26 @@ import touchConfig from './touch-config.js';
 import updateIdServer from './update-id-server.js';
 import { getDistrict } from './districts.js';
 import db from './db.js';
-
 import { log } from './util.js';
 
 dotenv.config();
 
-async function main() {
+async function main(d?: string) {
   try {
+    // get district
+    let district: RefinedDistrict | undefined = undefined;
+    if (process.argv.length > 2) {
+      const args = process.argv.slice(2);
+      if (args.length === 1) {
+        district = await getDistrict(args[0]);
+      }
+    } else {
+    }
+    if (!district) {
+      throw new Error('District not found');
+    }
+
     // set connection values
-    const district = await getDistrict('scramble');
     const dbParams: string[] = [district.database, district.sql, district.password];
 
     // load sql queries
@@ -76,4 +87,4 @@ async function main() {
   }
 }
 
-main();
+if (process.argv.length > 2) main();
