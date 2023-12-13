@@ -2,8 +2,8 @@
 
 ## Setup
 
-- Ensure all servers are reachable over SMB and SQL from the machine running the script. We use Tailscale to simply this process.
-- Create a SQL service account on each SQL server and store the password in an array to encrypt with `dist/encrypt-pws.js`.
+- Ensure all servers are reachable over SMB and SQL from the machine running the script.
+- Create a service account on each SQL server and store the password in an array, ordered by cluster number, to encrypt with `dist/encrypt-pws.js`.
 - Create a share on each district's web servers at `D:\inetpub\wwwroot`, granting the designated Windows user `Full Control`.
 
 ### Install
