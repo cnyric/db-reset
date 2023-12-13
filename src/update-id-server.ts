@@ -1,7 +1,6 @@
 import { RefinedDistrict } from '@@types';
-
-import { expect } from '@playwright/test';
 import { chromium } from 'playwright';
+import { expect } from '@playwright/test';
 import { log } from './util.js';
 
 async function updateIdServer(district: RefinedDistrict) {

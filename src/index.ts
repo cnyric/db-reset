@@ -1,13 +1,11 @@
 import { RefinedDistrict } from '@@types';
-
+import db from './db.js';
 import dotenv from 'dotenv';
+import { getDistrict } from './districts.js';
+import { log } from './util.js';
 import { readFile } from 'fs/promises';
-
 import touchConfig from './touch-config.js';
 import updateIdServer from './update-id-server.js';
-import { getDistrict } from './districts.js';
-import db from './db.js';
-import { log } from './util.js';
 
 dotenv.config();
 

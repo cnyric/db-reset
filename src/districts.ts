@@ -1,7 +1,8 @@
-import { readFile } from 'fs/promises';
-import { Districts, District, RefinedDistrict, Cluster, Site } from '@@types';
+import { Cluster, District, Districts, RefinedDistrict, Site } from '@@types';
+
 import Iron from '@hapi/iron';
 import { log } from './util.js';
+import { readFile } from 'fs/promises';
 
 async function getDistrict(code: string): Promise<RefinedDistrict> {
   log.info(`Getting district info for \`${code}\`...`);

@@ -1,5 +1,5 @@
-import knex from 'knex';
 import type { Knex } from 'knex';
+import knex from 'knex';
 import { log } from './util.js';
 
 function db(dbVals: string[]): Knex<any, unknown[]> {

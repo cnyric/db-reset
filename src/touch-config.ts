@@ -1,10 +1,8 @@
 import { RefinedDistrict } from '@@types';
-
 import dns from 'dns/promises';
-import { tmpdir } from 'os';
 import { execa } from 'execa';
-
 import { log } from './util.js';
+import { tmpdir } from 'os';
 
 async function touchConfig(district: RefinedDistrict) {
   for (const web of district.web) {
