@@ -30,13 +30,3 @@ END CATCH;
 -- Set the destination database to multi user mode
 DECLARE @multiUser NVARCHAR(MAX) = 'ALTER DATABASE ' + QUOTENAME(@destinationDatabaseName) + ' SET MULTI_USER;';
 EXEC sp_executesql @multiUser;
-
--- Reset the identity server config
-DECLARE @resetId NVARCHAR(MAX) = N'USE ' + QUOTENAME(@destinationDatabaseName) + N'; EXEC spIdentityServerUndoConfiguration @UndoType = ''refresh'', @overrideCheck = 1;';
-BEGIN TRY
-    EXEC sp_executesql @resetId, N'@overrideCheck INT', @overrideCheck = 1;
-END TRY
-BEGIN CATCH
-    EXEC LogError;
-END CATCH;
-

@@ -32,6 +32,12 @@ async function updateIdServer(district: RefinedDistrict) {
 
   await connectButton?.click();
 
+  // Connection failed. Error Code: InternalServerError
+
+  // .success-text
+  // Login Configuration connected successfully. To complete this process, recycle your App Pool/reset IIS.
+  // Note: If your district uses Google SSO or Microsoft SSO, you will need to perform some additional steps. Please refer to online help for details.
+
   setTimeout(async () => {
     expect(await connectButton?.innerText()).toBe('CONNECTED');
   }, 3000);

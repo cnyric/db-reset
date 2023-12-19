@@ -34,6 +34,10 @@ async function main(d?: string) {
       'REPLACE_DATABASE_NAME',
       district.database
     );
+    const resetIdSrv = (await readFile(`${process.cwd()}/queries/reset-id-srv.sql`, 'utf-8')).replace(
+      'REPLACE_DATABASE_NAME',
+      district.database
+    );
     const createUser = (await readFile(`${process.cwd()}/queries/create-user.sql`, 'utf-8'))
       .replace('REPLACE_EMAIL', process.env.SCHOOLTOOL_USER as string)
       .replace('REPLACE_PASSWORD', process.env.SCHOOLTOOL_PASSWORD as string);
@@ -59,13 +63,9 @@ async function main(d?: string) {
     log.info('Restoring database...');
     await db(dbParams).raw(restoreDb);
 
-    // create user
-    try {
-      log.info('Creating user...');
-      await db(dbParams).raw(createUser);
-    } catch (error) {
-      log.warn('User already exists');
-    }
+    // reset id server
+    log.info('Resetting ID server...');
+    await db(dbParams).raw(resetIdSrv);
 
     // touch config
     await touchConfig(district);
